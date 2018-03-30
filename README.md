@@ -16,7 +16,7 @@ TBD
 }
 ```
 ```
-@inproceedings{senanayake2016predicting,
+@inproceedings{senanayake2018continuous,
   title={Building Continuous Occupancy Maps with Moving Robots},
   author={Senanayake, Ransalu and Ramos, Fabio},
   booktitle={Proceedings of the Thirty Second AAAI Conference on Artificial Intelligence},

@@ -4,13 +4,13 @@ import matplotlib.pylab as pl
 import pandas as pd
 from sklearn.metrics.pairwise import rbf_kernel
 import sys
-import util
+#import util
 import time as comp_timer
 from sklearn.linear_model.base import LinearClassifierMixin, BaseEstimator
 from scipy.special import expit
 from scipy.linalg import solve_triangular
 
-class SeqBayesianHilbertMap(LinearClassifierMixin, BaseEstimator):
+class SBHM(LinearClassifierMixin, BaseEstimator):
     def __init__(self, gamma=0.075*0.814, grid=None, cell_resolution=(5, 5), cell_max_min=None, X=None, calc_loss=False):
         """
         :param gamma: RBF bandwidth
@@ -27,6 +27,7 @@ class SeqBayesianHilbertMap(LinearClassifierMixin, BaseEstimator):
         self.calc_loss = calc_loss
         self.intercept_, self.coef_, self.sigma_ = [0], [0], [0]
         self.scan_no = 0
+        print('D=', self.grid.shape[0])
 
     def __calc_grid_auto(self, cell_resolution, max_min, X):
         """
@@ -98,7 +99,7 @@ class SeqBayesianHilbertMap(LinearClassifierMixin, BaseEstimator):
 
     def fit(self, X, y):
 
-        # If first run, set m0, S0i (this is optional, but emperically good enough rather than looking at the convergence)
+        # If first run, set m0, S0i
         if self.scan_no == 0:
             self.mu = np.zeros((self.grid.shape[0] + 1))
             self.Sig_inv = 0.0001 * np.eye((self.grid.shape[0] + 1)) #0.01 for sim, 0
@@ -138,7 +139,6 @@ class SeqBayesianHilbertMap(LinearClassifierMixin, BaseEstimator):
     def predict_proba(self, X_q):
         X_q = self.__sparse_features(X_q)#[:, 1:]
         scores = self.decision_function(X_q)
-        #X_q = np.hstack((np.ones([X_q.shape[0], 1]), X_q))
 
         sigma = np.asarray([np.sum(np.dot(X_q, s) * X_q, axis=1) for s in self.sigma_])
         ks = 1. / (1. + np.pi * sigma / 8) ** 0.5

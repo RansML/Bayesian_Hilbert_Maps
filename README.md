@@ -5,7 +5,27 @@ Hilbert occupancy mapping without tuning regularization parameters
 **Demonstration**
 TBD
 
-<img src="output/intel.gif" width="600">
+<img src="Output/intel.gif" width="600">
+
+**Videos:**
+[https://youtu.be/LDrLsvfJ0V0](https://youtu.be/LDrLsvfJ0V0)
+
+[https://youtu.be/gxi0JKuzJvU](https://youtu.be/gxi0JKuzJvU)
+
+[https://youtu.be/iNXnRjLEsHQ](https://youtu.be/iNXnRjLEsHQ)
+
+**Example:**
+```python
+import sbhm
+
+X = #numpy array of size (N,2)
+y = #numpy array of size (N,)
+X_pred = #numpy array of size (N_pred,2)
+
+model = sbhm.SBHM(gamma)
+model.fit(X, y)
+y_pred = model.predict(X_pred)
+```
 
 **Papers:**
 Introduction to Bayesian Hilbert Maps:
@@ -40,10 +60,5 @@ Learning hinge points and kernel parameters:
   year={2018}
 }
 ```
+code: [https://github.com/MushroomHunting/autormorphing-kernels](https://github.com/MushroomHunting/autormorphing-kernels)
 
-**Videos:**
-[https://youtu.be/LDrLsvfJ0V0](https://youtu.be/LDrLsvfJ0V0)
-
-[https://youtu.be/gxi0JKuzJvU](https://youtu.be/gxi0JKuzJvU)
-
-[https://youtu.be/iNXnRjLEsHQ](https://youtu.be/iNXnRjLEsHQ)

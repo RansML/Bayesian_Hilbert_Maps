@@ -119,6 +119,8 @@ class SBHM(LinearClassifierMixin, BaseEstimator):
             # M-step: update epsilon
             XMX = np.dot(X, self.mu)**2
             XSX = np.sum(np.dot(X, self.Ri.T) ** 2, axis=1)
+            print(XMX.shape, XSX.shape, np.dot(X, self.mu).shape, X.shape, self.mu.shape)
+            XMX[42042048204]
             epsilon = np.sqrt(XMX + XSX)
 
             # Calculate loss, if specified

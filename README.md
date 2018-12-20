@@ -5,7 +5,7 @@ Hilbert occupancy mapping without tuning regularization parameters
 **Demonstration**
 TBD
 
-<img src="Uutput/intel.gif" width="600">
+<img src="Output/intel.gif" width="600">
 
 **Papers:**
 Introduction to Bayesian Hilbert Maps:

@@ -14,6 +14,18 @@ TBD
 
 [https://youtu.be/iNXnRjLEsHQ](https://youtu.be/iNXnRjLEsHQ)
 
+**Example:**
+```python
+import sbhm
+
+X = #numpy array of size (N,2)
+y = #numpy array of size (N,)
+Xq = #numpy array of size (N_pred,2)
+
+model = sbhm.SBHM(gamma)
+model.fit(X, y)
+y_pred = model.predict(X_pred)
+```
 
 **Papers:**
 Introduction to Bayesian Hilbert Maps:
@@ -47,6 +59,6 @@ Learning hinge points and kernel parameters:
   pages={--},
   year={2018}
 }
-code: [https://github.com/MushroomHunting/autormorphing-kernels](https://github.com/MushroomHunting/autormorphing-kernels)
 ```
+code: [https://github.com/MushroomHunting/autormorphing-kernels](https://github.com/MushroomHunting/autormorphing-kernels)
 

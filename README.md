@@ -20,7 +20,7 @@ import sbhm
 
 X = #numpy array of size (N,2)
 y = #numpy array of size (N,)
-Xq = #numpy array of size (N_pred,2)
+X_pred = #numpy array of size (N_pred,2)
 
 model = sbhm.SBHM(gamma)
 model.fit(X, y)

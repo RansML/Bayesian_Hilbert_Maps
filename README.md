@@ -7,6 +7,14 @@ TBD
 
 <img src="Output/intel.gif" width="600">
 
+**Videos:**
+[https://youtu.be/LDrLsvfJ0V0](https://youtu.be/LDrLsvfJ0V0)
+
+[https://youtu.be/gxi0JKuzJvU](https://youtu.be/gxi0JKuzJvU)
+
+[https://youtu.be/iNXnRjLEsHQ](https://youtu.be/iNXnRjLEsHQ)
+
+
 **Papers:**
 Introduction to Bayesian Hilbert Maps:
 ```
@@ -39,11 +47,6 @@ Learning hinge points and kernel parameters:
   pages={--},
   year={2018}
 }
+code: [https://github.com/MushroomHunting/autormorphing-kernels](https://github.com/MushroomHunting/autormorphing-kernels)
 ```
 
-**Videos:**
-[https://youtu.be/LDrLsvfJ0V0](https://youtu.be/LDrLsvfJ0V0)
-
-[https://youtu.be/gxi0JKuzJvU](https://youtu.be/gxi0JKuzJvU)
-
-[https://youtu.be/iNXnRjLEsHQ](https://youtu.be/iNXnRjLEsHQ)

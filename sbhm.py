@@ -69,6 +69,7 @@ class SBHM(LinearClassifierMixin, BaseEstimator):
         return 0.5/epsilon*(expit(epsilon)-0.5)
 
     def __calc_loss(self, X, mu0, Sig0_inv, mu, Sig_inv, Ri, epsilon):
+        # TODO
         Sig = np.dot(Ri.T, Ri)
         R0 = np.linalg.cholesky(Sig0_inv)
         R0i = solve_triangular(R0, np.eye(X.shape[1]), lower=True)
@@ -79,6 +80,15 @@ class SBHM(LinearClassifierMixin, BaseEstimator):
         return loss
 
     def __calc_posterior(self, X, y, epsilon, mu0, Sig0_inv, full_covar=False):
+        """
+        :param X: positions
+        :param y: labels
+        :param epsilon:
+        :param mu0: mean
+        :param Sig0_inv: inverse of covariance
+        :param full_covar: whether to output the full covariance or not
+        :return: mean, inverse of covariance, Cholesky factor
+        """
 
         lam = self.__lambda(epsilon)
 
@@ -98,6 +108,10 @@ class SBHM(LinearClassifierMixin, BaseEstimator):
             return mu, Sig_inv, L_inv_of_Sig_inv
 
     def fit(self, X, y):
+        """
+        :param X: Positions (N x 2)
+        :param y: labels (N,)
+        """
 
         # If first run, set m0, S0i
         if self.scan_no == 0:
@@ -119,8 +133,6 @@ class SBHM(LinearClassifierMixin, BaseEstimator):
             # M-step: update epsilon
             XMX = np.dot(X, self.mu)**2
             XSX = np.sum(np.dot(X, self.Ri.T) ** 2, axis=1)
-            print(XMX.shape, XSX.shape, np.dot(X, self.mu).shape, X.shape, self.mu.shape)
-            XMX[42042048204]
             epsilon = np.sqrt(XMX + XSX)
 
             # Calculate loss, if specified
@@ -139,6 +151,11 @@ class SBHM(LinearClassifierMixin, BaseEstimator):
         self.scan_no += 1
 
     def predict_proba(self, X_q):
+        """
+        :param X_q: Query positions (N x 2)
+        :return: (free prob, occupance prob)
+        """
+
         X_q = self.__sparse_features(X_q)#[:, 1:]
         scores = self.decision_function(X_q)
 

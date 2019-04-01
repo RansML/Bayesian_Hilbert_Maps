@@ -1,6 +1,6 @@
 # Bayesian Hilbert Maps
 ## Online Bayesian Hilbert Mapping
-Hilbert occupancy mapping without tuning regularization parameters
+Hilbert occupancy mapping without tuning regularization parameters. We can obtain both mean and variance estimates. 
 
 **Tutorials**
 [BHM_tutorial.ipynb](BHM_tutorial.ipynb)

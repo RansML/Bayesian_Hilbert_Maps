@@ -2,10 +2,13 @@
 ## Online Bayesian Hilbert Mapping
 Hilbert occupancy mapping without tuning regularization parameters
 
-**Demonstration**
-TBD
+**Tutorials**
+[BHM_tutorial.ipynb](BHM_tutorial.ipynb)
 
-<img src="Output/intel.gif" width="600">
+**Demonstrations**
+Now BHM is available in both numpy and pytorch. A few fixes to by done with the gpu version.  
+
+<img src="Outputs/intel.gif" width="600">
 
 **Videos:**
 [https://youtu.be/LDrLsvfJ0V0](https://youtu.be/LDrLsvfJ0V0)
@@ -25,6 +28,9 @@ X_pred = #numpy array of size (N_pred,2)
 model = sbhm.SBHM(gamma)
 model.fit(X, y)
 y_pred = model.predict(X_pred)
+
+# with pytorch
+TBD
 ```
 
 **Papers:**
@@ -61,4 +67,15 @@ Learning hinge points and kernel parameters:
 }
 ```
 code: [https://github.com/MushroomHunting/autormorphing-kernels](https://github.com/MushroomHunting/autormorphing-kernels)
+
+Fast fusion with multiple robots
+```
+@inproceedings{zhi2019fusion,
+  title={Continuous Occupancy Map Fusion with Fast Bayesian Hilbert Maps},
+  author={Zhi, William and Ott, Lionel and Senanayake, Ransalu and Ramos, Fabio},
+  booktitle={The International Conference on Robotics and Automation (ICRA)},
+  pages={--},
+  year={2019}
+}
+```
 

@@ -10,6 +10,10 @@ Now BHM is available in both numpy and pytorch. A few fixes to by done with the 
 
 <img src="Outputs/intel.gif" width="600">
 
+**Datasets**
+Intel Lab dataset
+KITTI dataset
+
 **Videos:**
 [https://youtu.be/LDrLsvfJ0V0](https://youtu.be/LDrLsvfJ0V0)
 

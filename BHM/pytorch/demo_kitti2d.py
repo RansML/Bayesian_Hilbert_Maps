@@ -103,5 +103,5 @@ for framei in range(108):
     pl.colorbar()
     pl.xlim([-80,80]); pl.ylim([-80,80])
     pl.title('kitti2011_09_26_drive0001_frame{}'.format(framei))
-    #pl.savefig('out/maps/kitti2011_09_26_drive0001_frame{}.png'.format(framei))
+    #pl.savefig(os.path.abspath('../../Outputs/kitti2011_09_26_drive0001_frame{}.png'.format(framei)))
     pl.show()

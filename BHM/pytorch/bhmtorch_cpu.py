@@ -108,7 +108,7 @@ class BHM2D_PYTORCH():
             self.mu, self.sig = self.__calc_posterior(X, y, self.epsilon, self.mu, self.sig)
 
             # M-step
-            self.epsilon = np.sqrt(pt.sum((X**2)*self.sig, dim=1) + (X.mm(self.mu.reshape(-1, 1))**2).squeeze())
+            self.epsilon = pt.sqrt(pt.sum((X**2)*self.sig, dim=1) + (X.mm(self.mu.reshape(-1, 1))**2).squeeze())
 
 
     def predict(self, Xq):

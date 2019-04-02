@@ -7,9 +7,9 @@ An intuitive guide to Bayesian Hilbert maps - [BHM_tutorial.ipynb](BHM_tutorial.
 
 **Demonstrations**
 Now BHM is available in both numpy and pytorch (CUDA). With the CUDA version on a laptop, it takes around 0.5 s per scan to map with a 100 m/360&deg LIDAR.
-* [/BHM/original/demo_intel.ipynb](/BHM/original/demo_intel.ipynb)
-* /BHM/pytorch/demo_kitti2d_cpu.py
-* /BHM/pytoch/demo_kitti2d_gpu.py
+* first implementation - [/BHM/original/demo_intel.ipynb](/BHM/original/demo_intel.ipynb)
+* pytorch CPU implementation - [/BHM/pytorch/demo_kitti2d_cpu.py](/BHM/pytorch/demo_kitti2d_cpu.py)
+* pytorch GPU implementation - [/BHM/pytorch/demo_kitti2d_cuda.py](/BHM/pytorch/demo_kitti2d_cuda.py)
 
 <img src="Outputs/intel.gif" width="600">
 

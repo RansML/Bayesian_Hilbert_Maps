@@ -37,7 +37,7 @@ model.fit(X, y)
 y_pred = model.predict(X_pred)
 
 # with pytorch
-TBD
+See the demonstrations.
 ```
 
 **Papers:**

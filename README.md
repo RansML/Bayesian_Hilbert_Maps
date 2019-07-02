@@ -41,8 +41,7 @@ See the demonstrations.
 ```
 
 **Papers:**
-<span style="color:blue">
-Introduction to Bayesian Hilbert Maps:
+<span style="color:blue">Introduction to Bayesian Hilbert Maps:</span>
 ```
 @inproceedings{senanayake2017bayesian,
   title={Bayesian hilbert maps for dynamic continuous occupancy mapping},
@@ -52,7 +51,7 @@ Introduction to Bayesian Hilbert Maps:
   year={2017}
 }
 ```
-</span>
+
 
 Examples with moving robots and the similarities to Gaussian process based techniques:
 ```

@@ -41,7 +41,7 @@ See the demonstrations.
 ```
 
 **Papers:**
-<span style="color:blue">Introduction to Bayesian Hilbert Maps:</span>
+[Introduction to Bayesian Hilbert Maps](https://drive.google.com/file/d/1AX-h6k2nRp6IVIorvo0gFkLzBlH6bduD/view)
 ```
 @inproceedings{senanayake2017bayesian,
   title={Bayesian hilbert maps for dynamic continuous occupancy mapping},

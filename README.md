@@ -41,6 +41,7 @@ See the demonstrations.
 ```
 
 **Papers:**
+<span style="color:blue">
 Introduction to Bayesian Hilbert Maps:
 ```
 @inproceedings{senanayake2017bayesian,
@@ -51,6 +52,7 @@ Introduction to Bayesian Hilbert Maps:
   year={2017}
 }
 ```
+</span>
 
 Examples with moving robots and the similarities to Gaussian process based techniques:
 ```

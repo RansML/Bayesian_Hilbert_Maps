@@ -21,9 +21,8 @@ device = pt.device("cpu")
 #TODO: efficient querying
 #TODO: batch training
 #TODO: re-using parameters for moving vehicles
-
 class BHM2D_PYTORCH():
-    def __init__(self, gamma=0.05, grid=None, cell_resolution=(5, 5), cell_max_min=None, X=None, nIter=0):
+    def __init__(self, gamma=0.05, grid=None, cell_resolution=(5, 5), cell_max_min=None, X=None, nIter=0, mu_sig=None):
         """
         :param gamma: RBF bandwidth
         :param grid: if there are prespecified locations to hinge the RBF
@@ -39,6 +38,18 @@ class BHM2D_PYTORCH():
         self.nIter = nIter
         print(' Number of hinge points={}'.format(self.grid.shape[0]))
 
+        #ADDED
+        if mu_sig is not None:
+            self.mu = pt.tensor(mu_sig[:,0], dtype=pt.float32)
+            self.sig = pt.tensor(mu_sig[:,1], dtype=pt.float32)
+
+    def updateGrid(grid):
+        self.grid = grid
+
+    def updateMuSig(mu_sig):
+        self.mu = pt.tensor(mu_sig[:,0], dtype=pt.float32)
+        self.sig = pt.tensor(mu_sig[:,1], dtype=pt.float32)
+
     def __calc_grid_auto(self, cell_resolution, max_min, X):
         """
         :param X: a sample of lidar locations
@@ -46,7 +57,7 @@ class BHM2D_PYTORCH():
         :param max_min: realm of the RBF field as (x_min, x_max, y_min, y_max)
         :return: numpy array of size (# of RNFs, 2) with grid locations
         """
-        X = X.numpy()
+        # X = X.numpy()
 
         if max_min is None:
             # if 'max_min' is not given, make a boundarary based on X
@@ -70,7 +81,8 @@ class BHM2D_PYTORCH():
         :return: hinged features with intercept of size (N, # of features + 1)
         """
         rbf_features = rbf_kernel(X, self.grid, gamma=self.gamma)
-        rbf_features = np.hstack((np.ones(X.shape[0])[:, np.newaxis], rbf_features))
+        # COMMENTED OUT BIAS TERM
+        # rbf_features = np.hstack((np.ones(X.shape[0])[:, np.newaxis], rbf_features))
         return pt.tensor(rbf_features, dtype=pt.float32)
 
     def __calc_posterior(self, X, y, epsilon, mu0, sig0):
@@ -110,6 +122,10 @@ class BHM2D_PYTORCH():
             # M-step
             self.epsilon = pt.sqrt(pt.sum((X**2)*self.sig, dim=1) + (X.mm(self.mu.reshape(-1, 1))**2).squeeze())
 
+        # print(self.mu)
+
+        return self.mu, self.sig
+
 
     def predict(self, Xq):
         """
@@ -145,7 +161,7 @@ class BHM2D_PYTORCH():
 
 
 class BHM3D_PYTORCH():
-    def __init__(self, gamma=0.05, grid=None, cell_resolution=(5, 5), cell_max_min=None, X=None, nIter=2):
+    def __init__(self, gamma=0.05, grid=None, cell_resolution=(5, 5), cell_max_min=None, X=None, nIter=2, mu_sig=None):
         """
         :param gamma: RBF bandwidth
         :param grid: if there are prespecified locations to hinge the RBF
@@ -161,11 +177,18 @@ class BHM3D_PYTORCH():
         self.nIter = nIter
         print(' Number of hinge points={}'.format(self.grid.shape[0]))
 
+    def updateGrid(grid):
+        self.grid = grid
+
+    def updateMuSig(mu_sig):
+        self.mu = pt.tensor(mu_sig[:,0], dtype=pt.float32)
+        self.sig = pt.tensor(mu_sig[:,1], dtype=pt.float32)
+
     def __calc_grid_auto(self, cell_resolution, max_min, X):
         """
         :param X: a sample of lidar locations
         :param cell_resolution: resolution to hinge RBFs as (x_resolution, y_resolution)
-        :param max_min: realm of the RBF field as (x_min, x_max, y_min, y_max)
+        :param max_min: realm of the RBF field as (x_min, x_max, y_min, y_max, z_min, z_max)
         :return: numpy array of size (# of RNFs, 2) with grid locations
         """
         X = X.numpy()
@@ -190,15 +213,12 @@ class BHM3D_PYTORCH():
 
     def __sparse_features(self, X):
         """
-        :param X: inputs of size (N,2)
+        :param X: inputs of size (N,3)
         :return: hinged features with intercept of size (N, # of features + 1)
         """
-        #rbf_features12 = rbf_kernel(X[:,:2], self.grid[:,:2], gamma=self.gamma)
-        #rbf_features3 = rbf_kernel(X[:, (1,2)], self.grid[:, (1,2)], gamma=self.gamma)
-        #rbf_features =  rbf_features3# + rbf_features3 + rbf_features12 * rbf_features3 #+ rbf_features12*rbf_features3
         rbf_features = rbf_kernel(X, self.grid, gamma=self.gamma)
 
-        rbf_features = np.hstack((np.ones(X.shape[0])[:, np.newaxis], rbf_features))
+        # rbf_features = np.hstack((np.ones(X.shape[0])[:, np.newaxis], rbf_features))
         return pt.tensor(rbf_features, dtype=pt.float32)
 
     def __calc_posterior(self, X, y, epsilon, mu0, sig0):
@@ -239,7 +259,8 @@ class BHM3D_PYTORCH():
             self.mu, self.sig = self.__calc_posterior(X, y, self.epsilon, self.mu, self.sig)
 
             # M-step
-            self.epsilon = np.sqrt(pt.sum((X**2)*self.sig, dim=1) + (X.mm(self.mu.reshape(-1, 1))**2).squeeze())
+            self.epsilon = pt.sqrt(pt.sum((X**2)*self.sig, dim=1) + (X.mm(self.mu.reshape(-1, 1))**2).squeeze())
+        return self.mu, self.sig
 
     def predict(self, Xq):
         """
@@ -263,7 +284,7 @@ class BHM3D_PYTORCH():
         Xq = self.__sparse_features(Xq)
 
         qw = pt.distributions.MultivariateNormal(self.mu, pt.diag(self.sig))
-        w = qw.sample((50,)).t()
+        w = qw.sample((nSamples,)).t()
 
         mu_a = Xq.mm(w).squeeze()
         probs = pt.sigmoid(mu_a)

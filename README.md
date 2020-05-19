@@ -1,6 +1,6 @@
-# Bayesian Hilbert Maps
+# Bayesian Hilbert Maps (BHM) for Occupancy Mapping
 ## Online Bayesian Hilbert Mapping
-Hilbert occupancy mapping without tuning regularization parameters. We can obtain both mean and variance estimates. 
+Rather than discretizing the space, we learn a parameterized continuous function of occupancy. Once the parameters are learned, we discard data. This function can be queried to obtain the mean and variance (i.e. uncertanty) of occupancy. In the online setting, we recursively use the estmated parameters as prior information. The model is suitable for both small and large datasets and requires minimal parameter tuning.
 
 **Tutorials**
 An intuitive guide to Bayesian Hilbert maps - [BHM_tutorial.ipynb](BHM_tutorial.ipynb)

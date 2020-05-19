@@ -10,12 +10,15 @@ Now BHM is available in both numpy and pytorch (CUDA).
 * first implementation - [/BHM/original/demo_intel.ipynb](/BHM/original/demo_intel.ipynb)
 * pytorch CPU implementation - [/BHM/pytorch/demo_kitti2d_cpu.py](/BHM/pytorch/demo_kitti2d_cpu.py)
 * pytorch GPU implementation - [/BHM/pytorch/demo_kitti2d_cuda.py](/BHM/pytorch/demo_kitti2d_cuda.py) - 0.5 s per scan on a laptop with a 100 m/360° LIDAR
+* pytorch online mapping - [/BHM_Online_Learning/e3_carla_video.py](/BHM_Online_Learning/e3_carla_video.py)
 
 <img src="Outputs/intel.gif" width="600">
+<img src="Outputs/carla.gif" width="600">
 
 **Datasets**
 Intel Lab dataset
 KITTI dataset
+Carla dataset - [link_to_be_included](link_to_be_included)
 
 **Videos:**
 [https://youtu.be/LDrLsvfJ0V0](https://youtu.be/LDrLsvfJ0V0)

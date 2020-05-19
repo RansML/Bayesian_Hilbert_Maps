@@ -1,6 +1,7 @@
 """
 # stacking data and kernels
 # memory - about 3 frames: current and two past ones
+# Lydia Chan
 """
 # import matplotlib.patches as pc
 # import random

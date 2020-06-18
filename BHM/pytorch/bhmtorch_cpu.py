@@ -154,7 +154,7 @@ class BHM2D_PYTORCH():
         mu_a = Xq.mm(w).squeeze()
         probs = pt.sigmoid(mu_a)
 
-        mean = pt.std(probs, dim=1).squeeze()
+        mean = pt.mean(probs, dim=1).squeeze()
         std = pt.std(probs, dim=1).squeeze()
 
         return mean, std
@@ -289,7 +289,7 @@ class BHM3D_PYTORCH():
         mu_a = Xq.mm(w).squeeze()
         probs = pt.sigmoid(mu_a)
 
-        mean = pt.std(probs, dim=1).squeeze()
+        mean = pt.mean(probs, dim=1).squeeze()
         std = pt.std(probs, dim=1).squeeze()
 
         return mean, std

@@ -11,6 +11,7 @@ Now BHM is available in both numpy and pytorch (CUDA).
 * pytorch CPU implementation - [/BHM/pytorch/demo_kitti2d_cpu.py](/BHM/pytorch/demo_kitti2d_cpu.py)
 * pytorch GPU implementation - [/BHM/pytorch/demo_kitti2d_cuda.py](/BHM/pytorch/demo_kitti2d_cuda.py) - 0.5 s per scan on a laptop with a 100 m/360° LIDAR
 * pytorch online mapping - [/BHM_Online_Learning/e3_carla_video.py](/BHM_Online_Learning/e3_carla_video.py)
+* on Raspberry Pi 4 with a Coral TPU - [https://github.com/pbabb2/SURF](https://github.com/pbabb2/SURF) - great work by [Patrick Babb](https://engineering.stanford.edu/news/patrick-babb-peers-future-computer-vision)
 
 <img src="Outputs/intel.gif" width="600">
 <img src="Outputs/carla.gif" width="600">

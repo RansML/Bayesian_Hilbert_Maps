@@ -38,7 +38,7 @@ X_pred = #numpy array of size (N_pred,2)
 
 model = sbhm.SBHM(gamma)
 model.fit(X, y)
-y_pred = model.predict(X_pred)
+y_pred = model.predict_proba(X_pred)[:,1]
 
 # with pytorch
 See the demonstrations.

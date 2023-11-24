@@ -6,7 +6,7 @@ from sklearn.metrics.pairwise import rbf_kernel
 import sys
 #import util
 import time as comp_timer
-from sklearn.linear_model.base import LinearClassifierMixin, BaseEstimator
+from sklearn.linear_model._base import LinearClassifierMixin, BaseEstimator
 from scipy.special import expit
 from scipy.linalg import solve_triangular
 
